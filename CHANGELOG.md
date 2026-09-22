@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.0 - 2026-09-22
+#### Features
+- instance in logging - (c7497e5) - Nathan Blair
+
+- - -
+
 ## 0.1.0 - 2026-09-21
 #### Features
 - initial release - (10a200d) - Nathan Blair
