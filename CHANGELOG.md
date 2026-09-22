@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.1 - 2026-09-22
+#### Bug Fixes
+- bump otel to get instance ID in logs - (3e30818) - Nathan Blair
+
+- - -
+
 ## 0.2.0 - 2026-09-22
 #### Features
 - instance in logging - (c7497e5) - Nathan Blair
