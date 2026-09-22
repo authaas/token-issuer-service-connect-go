@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"uuid"
 
 	"connectrpc.com/connect/v2"
 	"github.com/caarlos0/env/v11"
@@ -51,7 +52,7 @@ func Run() int {
 
 	stack := lifecycle.Stack{}
 
-	log, flush, err := pbrpcotel.Init(ctx, svcCfg.Name, svcCfg.Version)
+	log, flush, err := pbrpcotel.Init(ctx, svcCfg.Name, svcCfg.Version, uuid.New().String())
 	if err != nil {
 		slog.Default().Error("Failed to initialize telemetry", slog.Any("error", err))
 		return 1
@@ -92,24 +93,32 @@ func Run() int {
 	conn := grpcdclient.Connect(configured.GRPCDAddress, base)
 
 	// One discovery per process, over the instrumented transport. The data
-	// service is reached through the holding transport: the replica resolved
-	// for GetGrantHash is held and watched, and every call goes to it.
+	// service is reached through the holding transport: each procedure this
+	// calls is resolved to a replica, held, and watched, and every call to it
+	// goes to the replica held for it.
 	discovery := discover.New(serveCtx, log, conn, pbrpcotel.NewTransport(base))
 	httpClient := &http.Client{Transport: discovery.Held()}
 
-	upstream, err := discovery.Upstream(discover.URL(dataconnect.ServiceGetGrantHashProcedure))
-	if err != nil {
-		log.Error("Failed to name the data upstream", slog.Any("error", err))
-		return 1
-	}
+	checks := diagnostics.Checks{grpcdclient.CheckName: grpcdclient.Check(conn)}
 
-	// Held for the life of the process: resolved now, and again whenever the
-	// replica held is dropped, with or without a request arriving to ask.
-	go upstream.Hold(serveCtx)
+	for _, procedure := range []string{
+		dataconnect.ServiceGetGrantHashProcedure,
+		dataconnect.ServiceClearGrantProcedure,
+	} {
+		var upstream *discover.Upstream
+		upstream, err = discovery.Upstream(discover.URL(procedure))
+		if err != nil {
+			log.Error("Failed to name the data upstream",
+				slog.String("procedure", procedure), slog.Any("error", err))
+			return 1
+		}
 
-	checks := diagnostics.Checks{
-		grpcdclient.CheckName: grpcdclient.Check(conn),
-		"identity-data":       diagnostics.NewUpstreamCheck(httpClient, upstream),
+		checks[procedure] = diagnostics.NewUpstreamCheck(httpClient, upstream)
+
+		// Held for the life of the process: resolved now, and again whenever
+		// the replica held is dropped, with or without a request arriving to
+		// ask.
+		go upstream.Hold(serveCtx)
 	}
 
 	dataClient := dataconnect.NewServiceClient(connectclient.New(httpClient, discover.BaseURL, nil))
