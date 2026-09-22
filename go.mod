@@ -18,10 +18,10 @@ require (
 	github.com/pbrpc/connect-client v0.1.1
 	github.com/pbrpc/connect-errors v0.1.1
 	github.com/pbrpc/connect-server v0.2.0
-	github.com/pbrpc/connect-service v0.3.0
+	github.com/pbrpc/connect-service v0.3.1
 	github.com/pbrpc/http-transport v0.3.0
 	github.com/pbrpc/lifecycle v0.2.0
-	github.com/pbrpc/otel v0.4.0
+	github.com/pbrpc/otel v0.4.1
 	github.com/pbrpc/service v0.2.0
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260921155816-b14227669459
 )

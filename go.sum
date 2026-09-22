@@ -57,6 +57,8 @@ github.com/pbrpc/connect-server v0.2.0 h1:/JnC/mTpKm5Sst4M8w7S6/9gSp0KR6ICjZCFw7
 github.com/pbrpc/connect-server v0.2.0/go.mod h1:uW4utpVQovak1L2ipRtiZBbFUeB5bOVLg+sIpeIbAaE=
 github.com/pbrpc/connect-service v0.3.0 h1:rXpwTP3hTQn1PN/e5OvOsH3ioMNnuQlcLRXFdMY3i40=
 github.com/pbrpc/connect-service v0.3.0/go.mod h1:XKaVA1Meimf/u6gFMvo9JW5mTeYZ4DIQigEpDTi3YbU=
+github.com/pbrpc/connect-service v0.3.1 h1:4Uu6vo/tymAZ1iUEQAXdjq08iADhjfl0rxYjYHzZH3E=
+github.com/pbrpc/connect-service v0.3.1/go.mod h1:sAMMJePRMOKOqkfm0Tuj3WU6UUSpKZ7mL5SB5iqi8Wc=
 github.com/pbrpc/connect-testing v0.4.0 h1:gDrhcMIbvvV+vpXPWqCYY6YbuVNG8tpVK622Fhk+qfE=
 github.com/pbrpc/connect-testing v0.4.0/go.mod h1:MKbG7K+I8L5ms2IR9/9I+CiNnyTCP9ozVq6J8Fuw0Qg=
 github.com/pbrpc/http-server v0.3.1 h1:ynh537l637ywlPR4eHjy/Zug17ulMyma7/xWC3TYSnY=
@@ -67,6 +69,8 @@ github.com/pbrpc/lifecycle v0.2.0 h1:KjSEEY127oGxVgcnDAwrg+Yd3UAKQWi7RA4EC8OjFBM
 github.com/pbrpc/lifecycle v0.2.0/go.mod h1:n/5FEUJAlc1z4RTRv6SMP96qBvkjbOdew+v1FGruTAw=
 github.com/pbrpc/otel v0.4.0 h1:8Mm4HTnaTLW7iUlm06zBpJs8P20Fti0mXtznqxE1KZQ=
 github.com/pbrpc/otel v0.4.0/go.mod h1:H66otuYonWQr1d6PZ3E6rIYS6gdYMi0z4AoaCkQBVU4=
+github.com/pbrpc/otel v0.4.1 h1:6hd+fFo7Kjb/guz7y0DBb1r52zIN53d9IKrJ3QOJSJQ=
+github.com/pbrpc/otel v0.4.1/go.mod h1:H66otuYonWQr1d6PZ3E6rIYS6gdYMi0z4AoaCkQBVU4=
 github.com/pbrpc/otel-testing v0.1.0 h1:sEI3Pyd8MwsbBoNh7X/vo8VCmApRicExy5F8QyWr1ME=
 github.com/pbrpc/otel-testing v0.1.0/go.mod h1:L9VXBfd1Xesbxp02VZQfxd3upCG3JB650j0hh7wE3s4=
 github.com/pbrpc/service v0.2.0 h1:fGdn4L/kPg/ggk8XeAIRtoeUtZjRcMIV7lyJnkWZ0NI=
